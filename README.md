@@ -155,15 +155,45 @@ Jika memilih nomor 6 untuk keluar dari sistem, akan keluar output terima kasih t
       <img width="624" height="56" alt="image" src="https://github.com/user-attachments/assets/6d502c57-92e4-437e-a61e-ca107f6b100a" />
 
       SesiIstirahat yang merupakan turunan dari kelas SesiBelajar menggunakan keyword extends. Di dalamnya terdapat atribut private int waktuIstirahat;, yang berfungsi menyimpan lama waktu istirahat dalam satuan menit. Karena atribut ini memiliki modifier private, maka nilainya hanya dapat diakses dan diubah melalui metode yang ada di dalam kelas SesiIstirahat, menjaga enkapsulasi data agar tidak bisa diubah sembarangan dari luar kelas.
-      
-    3) Constructor
 
-    <img width="970" height="113" alt="image" src="https://github.com/user-attachments/assets/d24c8cf4-796c-41b7-a496-c1826de968f2" />
+   3) Constructur
+     
+      <img width="970" height="113" alt="image" src="https://github.com/user-attachments/assets/d24c8cf4-796c-41b7-a496-c1826de968f2" />
 
-    Construktor ini menerima tiga parameter yaitu namaSesi, waktuBelajar, dan waktuIstirahat. Pertama, ia memanggil konstruktor superclass SesiBelajar melalui super(namaSesi, waktuBelajar) untuk menginisialisasi atribut yang diwarisi. Setelah itu, konstruktor memanggil metode setWaktuIstirahat(waktuIstirahat) untuk mengatur nilai atribut waktuIstirahat milik kelas ini. Dengan cara ini, setiap objek SesiIstirahat akan memiliki nama sesi, waktu belajar, dan lama istirahat yang sudah terisi saat objek dibuat.
-    
-    4) Setter dan Getter
-    5) Override
+      Construktor ini menerima tiga parameter yaitu namaSesi, waktuBelajar, dan waktuIstirahat. Pertama, ia memanggil konstruktor superclass SesiBelajar melalui super(namaSesi, waktuBelajar) untuk menginisialisasi atribut yang diwarisi. Setelah itu, konstruktor memanggil metode setWaktuIstirahat(waktuIstirahat) untuk mengatur nilai atribut waktuIstirahat milik kelas ini. Dengan cara ini, setiap objek SesiIstirahat akan memiliki nama sesi, waktu belajar, dan lama istirahat yang sudah terisi saat objek dibuat.
+
+
+      4) Setter dan Getter
+     
+         <img width="1047" height="396" alt="image" src="https://github.com/user-attachments/assets/d78a01e6-31de-417f-962d-c80574cd0a07" />
+
+         Metode getWaktuIstirahat() digunakan untuk mengembalikan nilai waktuIstirahat, sehingga dapat diakses dari luar kelas. Metode setWaktuIstirahat(int waktuIstirahat) bertugas mengatur nilai atribut, tetapi terlebih dahulu memvalidasi agar nilainya harus lebih besar dari 0. Jika nilainya tidak valid (≤ 0), akan dilemparkan IllegalArgumentException. Dengan pendekatan ini, data waktuIstirahat terlindungi dari input yang salah sekaligus mendukung prinsip enkapsulasi.
+
+      5) Override
+     
+         <img width="1050" height="185" alt="image" src="https://github.com/user-attachments/assets/8f4fab48-3f23-466f-865c-104c10c9c1be" />
+
+         Metode infoSesi() yang meng-override metode abstrak dari superclass SesiBelajar. Metode ini menampilkan informasi lengkap tentang objek SesiIstirahat, yaitu nama sesi, waktu belajar, dan waktu istirahat, masing-masing ditampilkan dalam satuan menit. Dengan adanya override ini, setiap kali infoSesi() dipanggil pada objek SesiIstirahat, program akan menampilkan detail yang sesuai dengan karakteristik sesi istirahat, bukan perilaku default dari superclass.
+
+5. CrudService.java
+
+  1) Package
+  
+     <img width="216" height="23" alt="image" src="https://github.com/user-attachments/assets/e8648800-f464-4908-8213-091e68a73d8a" />
+
+     CrudService.java ini disimpan di package service.
+
+   2) Import
+
+         <img width="393" height="130" alt="image" src="https://github.com/user-attachments/assets/c6051394-9dce-4763-ad55-ace0bc91c73a" />
+
+      - import model.SesiBelajar; berfungsi untuk mengimpor class SesiBelajar yang sudah dibuat dalam package model, sehingga bisa dipanggil di file lain tanpa perlu menuliskan path lengkapnya.
+      - import java.util.ArrayList; digunakan untuk memanggil class ArrayList dari library Java, yang berfungsi menyimpan data dalam bentuk list dinamis.
+      - import java.util.Scanner; berfungsi memanggil class Scanner dari library Java, yang digunakan untuk membaca input dari pengguna melalui keyboard.
+     
+
+         
+
 
 
 
