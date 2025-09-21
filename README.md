@@ -188,8 +188,115 @@ Jika memilih nomor 6 untuk keluar dari sistem, akan keluar output terima kasih t
          <img width="393" height="130" alt="image" src="https://github.com/user-attachments/assets/c6051394-9dce-4763-ad55-ace0bc91c73a" />
 
       - import model.SesiBelajar; berfungsi untuk mengimpor class SesiBelajar yang sudah dibuat dalam package model, sehingga bisa dipanggil di file lain tanpa perlu menuliskan path lengkapnya.
+      - import model.SesiFokus; berfungsi untuk mengimpor class SesiFokus yang sudah dibuat dalam package model, sehingga bisa dipanggil di file lain tanpa perlu menuliskan path lengkapnya.
+      - import model.SesiIstirahat; berfungsi untuk mengimpor class SesiIstirahat yang sudah dibuat dalam package model, sehingga bisa dipanggil di file lain tanpa perlu menuliskan path lengkapnya.
       - import java.util.ArrayList; digunakan untuk memanggil class ArrayList dari library Java, yang berfungsi menyimpan data dalam bentuk list dinamis.
       - import java.util.Scanner; berfungsi memanggil class Scanner dari library Java, yang digunakan untuk membaca input dari pengguna melalui keyboard.
+     
+      3) Data Default
+     
+         <img width="962" height="538" alt="image" src="https://github.com/user-attachments/assets/dfd8a710-a1ab-489c-a81f-f59a70ddd2f0" />
+
+         CrudService yang berfungsi sebagai pengelola data sesi belajar. Di dalamnya terdapat atribut daftarSesi bertipe ArrayList<SesiBelajar> untuk menyimpan kumpulan objek sesi, serta atribut input untuk membaca data dari pengguna melalui Scanner. Konstruktor CrudService() menginisialisasi daftarSesi dan input, lalu membuat tiga objek sesi: dua objek SesiFokus dengan daftar tugas masing-masing, dan satu objek SesiIstirahat. Ketiga objek tersebut kemudian ditambahkan ke dalam daftarSesi, sehingga CrudService memiliki daftar awal sesi yang siap digunakan untuk operasi CRUD (Create, Read, Update, Delete) dalam program.
+
+      4) Create (tambahSesi)
+     
+         <img width="959" height="712" alt="image" src="https://github.com/user-attachments/assets/fa4be15a-63a4-46c8-9cdf-ec2655c6d717" />
+
+         Metode tambahSesi() digunakan untuk menambahkan sesi baru ke dalam daftar. Program menampilkan pilihan jenis sesi yang tersedia, lalu meminta pengguna memasukkan nama sesi dan waktu belajar (dalam menit). Jika pengguna memilih sesi fokus, maka dibuat objek `SesiFokus` dan program masuk ke perulangan do-while untuk menambahkan daftar tugas hingga pengguna mengetik “selesai”. Jika memilih sesi istirahat, maka pengguna juga diminta memasukkan waktu istirahat (dalam menit) sebelum dibuat objek SesiIstirahat. Setiap objek sesi yang berhasil dibuat akan ditambahkan ke dalam daftarSesi, sedangkan jika pilihan tidak valid program menampilkan pesan kesalahan.
+
+      5) Read (lihatSesi)
+
+         <img width="761" height="309" alt="image" src="https://github.com/user-attachments/assets/bd30b245-22fd-41f5-8f54-0ad8132e6ad6" />
+
+         tampilkanSesi() digunakan untuk menampilkan daftar sesi belajar yang sudah tersimpan. Jika daftarSesi masih kosong, program akan menampilkan pesan “Belum ada sesi belajar”. Namun jika terdapat data, program mencetak judul daftar sesi kemudian melakukan perulangan for untuk mengambil setiap objek SesiBelajar dari daftarSesi. Setiap sesi ditampilkan dengan nomor urut, memanggil metode infoSesi() untuk menampilkan detail sesi, dan dipisahkan dengan garis pembatas.
+
+      6) Update (updateSesi)
+     
+         <img width="685" height="789" alt="image" src="https://github.com/user-attachments/assets/bd0fe698-13a9-41d2-b9ed-1265c1296790" />
+
+         updateSesi() digunakan untuk memperbarui data sesi belajar yang sudah ada dalam daftar. Program menampilkan daftar sesi terlebih dahulu, lalu meminta pengguna memilih nomor sesi yang ingin diupdate. Setelah itu, pengguna dapat mengganti nama sesi, waktu belajar, dan jika sesi yang dipilih merupakan SesiFokus, pengguna juga diberi opsi untuk memperbarui daftar tugas melalui perulangan do-while hingga mengetik “selesai”. Jika sesi yang dipilih adalah SesiIstirahat, pengguna dapat memperbarui waktu istirahat. Apabila input sesuai, perubahan akan disimpan dan program menampilkan pesan bahwa sesi berhasil diupdate, sedangkan input yang tidak valid akan menghasilkan pesan kesalahan.
+
+      7) Delete (hapusSesi)
+     
+         <img width="545" height="267" alt="image" src="https://github.com/user-attachments/assets/4b246500-96f2-4b77-be3b-500e6b74e5ad" />
+
+         hapusSesi() digunakan untuk menghapus data sesi belajar dari daftar. Program terlebih dahulu menampilkan daftar sesi, lalu memeriksa apakah daftar kosong; jika kosong maka ditampilkan pesan bahwa tidak ada sesi yang bisa dihapus. Jika ada, pengguna diminta memilih nomor sesi yang ingin dihapus, kemudian program memvalidasi input tersebut. Apabila nomor valid, sesi yang sesuai dihapus dari daftarSesi dan ditampilkan pesan keberhasilan, sedangkan jika input tidak valid program menampilkan pesan kesalahan.
+
+      8) Search (cariSesi)
+     
+         <img width="525" height="291" alt="image" src="https://github.com/user-attachments/assets/f61f4c45-f6d3-4d64-bebf-374b857ee8e4" />
+
+         cariSesi() digunakan untuk mencari sesi belajar berdasarkan nama yang dimasukkan pengguna. Program meminta input keyword, kemudian melakukan pencarian pada setiap objek dalam daftarSesi dengan membandingkan nama sesi dalam bentuk huruf kecil. Jika ditemukan, detail sesi ditampilkan melalui pemanggilan metode infoSesi() dan hasil dipisahkan dengan garis pembatas. Jika tidak ada sesi yang cocok dengan keyword, program menampilkan pesan bahwa sesi tidak ditemukan.
+
+      9) Validasi Data Input
+     
+          <img width="643" height="291" alt="image" src="https://github.com/user-attachments/assets/876d96f5-8bfb-4710-aa3b-65cd40385a6e" />
+
+         validasiInputInt() digunakan untuk memvalidasi input angka dari pengguna agar sesuai dengan format yang benar. Metode ini menerima parameter berupa pesan, lalu menjalankan perulangan while(true) dengan blok try-catch. Input yang diberikan pengguna diubah menjadi integer menggunakan Integer.parseInt(), kemudian dicek apakah bernilai lebih dari 0. Jika input tidak valid atau tidak sesuai, program akan menampilkan pesan kesalahan dan meminta input ulang. Metode ini memastikan hanya angka positif yang dapat diterima sebelum nilai dikembalikan.
+
+
+6. Main.java (Entry Point Class)
+
+   1) Package
+
+      <img width="206" height="27" alt="image" src="https://github.com/user-attachments/assets/dcc96ae6-e4c1-4edc-9138-aa2cf704d624" />
+
+      Main.java ini disimpan di package main;
+
+   2) Import
+  
+      <img width="352" height="48" alt="image" src="https://github.com/user-attachments/assets/12b9d4a3-72dd-42f3-8a04-7610ac327b0f" />
+
+      - import service.CrudService; digunakan untuk mengimpor class CrudService yang berada di dalam package service. Class ini kemungkinan berisi interface atau class dasar yang menyediakan operasi CRUD (Create, Read, Update, Delete) untuk dikelola di program.
+      - import java.util.Scanner; digunakan untuk mengimpor class Scanner dari library Java, yang berfungsi membaca input dari pengguna (misalnya input dari keyboard).
+     
+   3) Menu Utama
+  
+      <img width="925" height="543" alt="image" src="https://github.com/user-attachments/assets/da9231d6-3bfc-455e-93b5-f3c97ce4a9d0" />
+
+  
+      Class Main yang berfungsi sebagai titik awal (entry point) program. Di dalam method main, pertama dibuat objek CrudService bernama crud yang akan menangani operasi CRUD (Create, Read, Update, Delete) pada sesi belajar. Kemudian dibuat objek Scanner bernama sc untuk membaca input pengguna dari keyboard. Sebuah variabel pilihan juga disiapkan untuk menyimpan menu yang dipilih. Setelah itu, program menampilkan menu utama di dalam perulangan do-while, yang berisi daftar pilihan seperti menambah sesi belajar, melihat semua sesi, mengupdate, menghapus, mencari sesi, atau keluar dari program. Menu ini menjadi antarmuka utama agar pengguna bisa berinteraksi dengan sistem manajemen waktu belajar berbasis Pomodoro Tracker. Setelah daftar menu ditampilkan, program melakukan validasi input menggunakan while (!sc.hasNextInt()) untuk memastikan bahwa pengguna hanya bisa memasukkan angka. Jika pengguna memasukkan input yang bukan angka, program akan menampilkan pesan "Input harus berupa angka yang valid (1-6).", kemudian meminta input ulang. Setelah valid, nilai menu yang dipilih disimpan ke variabel pilihan dengan sc.nextInt(), dan sc.nextLine() dipanggil untuk membersihkan buffer agar tidak terjadi error saat membaca input berikutnya.
+
+   4) Logika Menu Utama
+     
+      <img width="989" height="304" alt="image" src="https://github.com/user-attachments/assets/72caa7ef-1bc4-49c7-bdb9-7b44c890e551" />
+
+   Bagian akhir dari logika menu utama yang menggunakan switch-case untuk mengeksekusi pilihan pengguna. Setiap angka menu (1–6) akan memanggil method yang sesuai dari objek crud (yang merupakan instance dari CrudService).
+   
+   - Case 1 → memanggil crud.tambahSesi() untuk menambah sesi belajar baru.
+   - Case 2 → memanggil crud.tampilkanSesi() untuk menampilkan semua sesi belajar.
+   - Case 3 → memanggil crud.updateSesi() untuk mengubah data sesi belajar.
+   - Case 4 → memanggil crud.hapusSesi() untuk menghapus sesi belajar.
+   - Case 5 → memanggil crud.cariSesi() untuk mencari sesi belajar berdasarkan nama.
+   - Case 6 → menampilkan pesan ucapan terima kasih dan keluar dari program
+   - Default → menampilkan pesan jika input tidak valid.
+
+Loop do-while akan terus berjalan selama pilihan != 6, artinya program hanya akan berhenti jika pengguna memilih menu keluar. Setelah keluar, sc.close() dipanggil untuk menutup Scanner dan mengakhiri program dengan baik.
+
+
+
+
+
+
+
+
+
+
+
+         
+
+
+         
+
+
+         
+
+
+
+
+         
+
      
 
          
