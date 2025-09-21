@@ -57,9 +57,117 @@ Jika memilih nomor 5, pengguna akan diminta memasukkan nama sesi yang ingin dica
 
 7. Menu Keluar
 
-   <img width="754" height="310" alt="image" src="https://github.com/user-attachments/assets/cd43518b-7a60-4840-9a7c-a2265ddc6155" />
+<img width="754" height="310" alt="image" src="https://github.com/user-attachments/assets/cd43518b-7a60-4840-9a7c-a2265ddc6155" />
 
-   Jika memilih nomor 6 untuk keluar dari sistem, akan keluar output terima kasih telah mengunjungi pomodoro tracker.
+Jika memilih nomor 6 untuk keluar dari sistem, akan keluar output terima kasih telah mengunjungi pomodoro tracker.
+
+**- Source Code**
+
+1. Struktur Project
+
+<img width="264" height="208" alt="image" src="https://github.com/user-attachments/assets/644fe6ce-7759-4efc-8c7e-d968effc4b4f" />
+
+   1) Package Model yang terdapat SesiBelajat.java dan tempat menyimpan model data untuk aplikasi, yaitu SesiBelajar (sebagai superclass abstrak), SesiFokus (subclass), dan SesiIstirahat (subclass).
+   2) Package Service yang terdapat CrudService.java dan tempat menyimpan kode logika CRUD.
+   3) Package Main yang terdapat Main.Java dan tempat menyimpan menu user.
+
+2. SesiBelajar.Java
+
+   1) Package
+
+      <img width="289" height="38" alt="image" src="https://github.com/user-attachments/assets/5d89a2db-621f-44ea-9ea0-5f76488c8eb9" />
+
+      SesiBelajar.java ini disimpan di package model;
+
+   2) Properties dan Deklarasi Attribute
+  
+      <img width="496" height="82" alt="image" src="https://github.com/user-attachments/assets/a00d0178-f476-4535-87f0-ee23e195f9df" />
+
+      Deklarasi atribut dalam class SesiBelajar. Di dalamnya terdapat empat atribut utama, yaitu namaSesi bertipe String yang menyimpan nama dari sesi belajar, waktuBelajar bertipe int yang menyimpan lama waktu belajar dalam menit. Atribut-atribut ini dibuat dengan modifier private agar tidak bisa diakses langsung dari luar class, sehingga lebih aman dan hanya bisa diakses melalui method getter dan setter yang sudah disediakan.
+
+
+   3) Constuctor
+  
+      <img width="732" height="79" alt="image" src="https://github.com/user-attachments/assets/b98c5d96-e683-4bf6-a4c3-399bdde41905" />
+
+      Constructor ini digunakan untuk membuat objek baru dengan memberikan nilai awal pada atribut namaSesi dan waktuBelajar sesuai parameter yang dimasukkan. Kata kunci this dipakai untuk membedakan antara atribut class dengan parameter yang memiliki nama sama.
+
+   4) Getter dan Setter
+  
+      <img width="1020" height="533" alt="image" src="https://github.com/user-attachments/assets/35c08dc2-3b92-4d3a-9444-835bbc6a0beb" />
+
+      Getter (getNamaSesi, getWaktuBelajar) digunakan untuk mengambil nilai dari atribut, sedangkan setter (setNamaSesi, setWaktuBelajar) digunakan untuk mengubah nilainya dengan validasi: namaSesi tidak boleh kosong/null dan waktuBelajar harus lebih dari 0. Jika aturan dilanggar, program akan melempar IllegalArgumentException, sehingga data yang tersimpan selalu valid.
+
+   5) Metode Abstract
+  
+      <img width="521" height="75" alt="image" src="https://github.com/user-attachments/assets/02c35351-3063-47c7-92f3-2d1385e1180f" />
+
+      Kode public abstract void infoSesi(); ada di superclass dan fungsinya jadi aturan. Artinya semua kelas turunan dari superclass ini wajib membuat isi atau logika dari infoSesi().
+
+3. SesiFokus.java
+
+   1) Package
+
+      <img width="289" height="38" alt="image" src="https://github.com/user-attachments/assets/5d89a2db-621f-44ea-9ea0-5f76488c8eb9" />
+
+      SesiFokus.java ini disimpan di package model;
+
+   2) Import
+  
+      <img width="476" height="38" alt="image" src="https://github.com/user-attachments/assets/79982c2e-9bac-4e0a-a06b-411cdf40f88a" />
+
+      import java.util.ArrayList digunakan untuk memanggil class ArrayList dari package java.util, yang berfungsi menyimpan data dalam bentuk list dinamis.
+
+   3) Properties dan Deklarasi Attribute
+  
+      <img width="571" height="53" alt="image" src="https://github.com/user-attachments/assets/7d01f12e-2a6e-461c-be8f-115329d420c9" />
+
+      SesiFokus yang merupakan turunan dari kelas SesiBelajar menggunakan keyword extends, sehingga SesiFokus mewarisi properti dan metode dari SesiBelajar. Di dalamnya terdapat atribut daftarTugas bertipe ArrayList<String> dengan modifier private, yang berarti hanya bisa diakses langsung dari dalam kelas SesiFokus. Atribut ini berfungsi untuk menyimpan daftar tugas dalam bentuk kumpulan data string yang terkait dengan sesi fokus tersebut.
+
+   4) Constructor
+  
+      <img width="711" height="98" alt="image" src="https://github.com/user-attachments/assets/260d0384-bc9b-4bcf-9a26-d4387ecc87c4" />
+
+      Construktor ini menerima dua parameter, yaitu namaSesi (String) dan waktuBelajar (int), lalu memanggil konstruktor superclass SesiBelajar melalui super(namaSesi, waktuBelajar) untuk menginisialisasi atribut yang diwarisi. Setelah itu, atribut daftarTugas diinisialisasi dengan objek ArrayList baru agar siap digunakan untuk menyimpan data tugas. Dengan cara ini, setiap objek SesiFokus akan langsung memiliki nama sesi, waktu belajar, dan daftar tugas yang kosong saat pertama kali dibuat.
+
+   5) Setter dan Getter
+  
+      <img width="736" height="231" alt="image" src="https://github.com/user-attachments/assets/f05c83b5-aa9d-42ec-90b8-2ce25daa269e" />
+
+      Metode getDaftarTugas() mengembalikan objek daftarTugas, sehingga memungkinkan bagian lain dari program untuk mengakses seluruh daftar tugas yang disimpan. Metode tambahTugas(String tugas) berfungsi untuk menambahkan tugas baru ke dalam daftarTugas, namun terlebih dahulu memeriksa apakah nilai tugas tidak null dan tidak kosong setelah di-trim. Dengan cara ini, hanya tugas yang valid yang akan dimasukkan ke dalam daftar.
+
+   6) Override
+  
+      <img width="992" height="385" alt="image" src="https://github.com/user-attachments/assets/53a724bb-30a8-48dd-b0a9-c7f77ea10655" />
+
+      Metode infoSesi() yang meng-override metode abstrak dari superclass SesiBelajar. Metode ini menampilkan informasi lengkap tentang sesi fokus ke layar, termasuk nama sesi, durasi belajar, dan daftar tugas. Jika daftarTugas kosong, akan dicetak tulisan “(kosong)”, sedangkan jika ada isinya, setiap tugas akan ditampilkan satu per satu dengan format “- tugas”. Dengan cara ini, metode infoSesi() memberikan gambaran jelas tentang sesi yang sedang dibuat atau dijalankan.
+
+4. SesiIstirahat.java
+   
+  1) Package
+
+      <img width="289" height="38" alt="image" src="https://github.com/user-attachments/assets/5d89a2db-621f-44ea-9ea0-5f76488c8eb9" />
+
+      SesiIstirahat.java ini disimpan di package model;
+
+   2) Properties dan Deklarasi Attribute
+
+      <img width="624" height="56" alt="image" src="https://github.com/user-attachments/assets/6d502c57-92e4-437e-a61e-ca107f6b100a" />
+
+      SesiIstirahat yang merupakan turunan dari kelas SesiBelajar menggunakan keyword extends. Di dalamnya terdapat atribut private int waktuIstirahat;, yang berfungsi menyimpan lama waktu istirahat dalam satuan menit. Karena atribut ini memiliki modifier private, maka nilainya hanya dapat diakses dan diubah melalui metode yang ada di dalam kelas SesiIstirahat, menjaga enkapsulasi data agar tidak bisa diubah sembarangan dari luar kelas.
+      
+    3) Constructor
+
+    <img width="970" height="113" alt="image" src="https://github.com/user-attachments/assets/d24c8cf4-796c-41b7-a496-c1826de968f2" />
+
+    Construktor ini menerima tiga parameter yaitu namaSesi, waktuBelajar, dan waktuIstirahat. Pertama, ia memanggil konstruktor superclass SesiBelajar melalui super(namaSesi, waktuBelajar) untuk menginisialisasi atribut yang diwarisi. Setelah itu, konstruktor memanggil metode setWaktuIstirahat(waktuIstirahat) untuk mengatur nilai atribut waktuIstirahat milik kelas ini. Dengan cara ini, setiap objek SesiIstirahat akan memiliki nama sesi, waktu belajar, dan lama istirahat yang sudah terisi saat objek dibuat.
+    
+    4) Setter dan Getter
+    5) Override
+
+
+
+
 
 
 
